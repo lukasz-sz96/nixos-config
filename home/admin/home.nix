@@ -1,0 +1,21 @@
+{ ... }:
+
+{
+  imports = [
+    ./programs/packages.nix
+    ./programs/neovim.nix
+    ./programs/fish.nix
+    ./programs/starship.nix
+    ./programs/ghostty.nix
+
+    ./desktop/niri.nix
+    ./desktop/noctalia.nix
+  ];
+
+  home.username = "admin";
+  home.homeDirectory = "/home/admin";
+
+  programs.home-manager.enable = true;
+
+  home.stateVersion = "26.05";
+}
