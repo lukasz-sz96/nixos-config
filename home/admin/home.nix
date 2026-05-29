@@ -13,6 +13,7 @@
 
     ./desktop/niri.nix
     ./desktop/noctalia.nix
+    ./desktop/cursor.nix
   ];
 
   home.username = "admin";
