@@ -88,10 +88,9 @@ in
       layout = {
         gaps = 28;
         center-focused-column = "never";
-        focus-ring.enable = false;
+        focus-ring.enable = true;
         border = {
-          enable = true;
-          width = 2;
+          enable = false;
         };
         preset-column-widths = [
           { proportion = 0.33333; }
