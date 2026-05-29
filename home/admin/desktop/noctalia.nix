@@ -70,6 +70,27 @@
         margin_h = 180;
         margin_v = 10;
         shadow = true;
+        start = [
+          "launcher"
+          "workspaces"
+          "active_window"
+        ];
+        center = [
+          "clock"
+        ];
+        end = [
+          "media"
+          "tray"
+          "notifications"
+          "clipboard"
+          "network"
+          "bluetooth"
+          "volume"
+          "brightness"
+          "battery"
+          "control-center"
+          "session"
+        ];
       };
 
       notification.background_opacity = 0.78;
