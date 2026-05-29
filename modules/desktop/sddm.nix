@@ -20,11 +20,15 @@
 
     settings = {
       General.InputMethod = "";
-      Theme.CursorTheme = "Adwaita";
+      Theme = {
+        CursorSize = 24;
+        CursorTheme = "Adwaita";
+      };
     };
   };
 
   environment.systemPackages = [
+    pkgs.adwaita-icon-theme
     pkgs.sddm-astronaut
   ];
 }
