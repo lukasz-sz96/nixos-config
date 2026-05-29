@@ -13,11 +13,15 @@
     ../../modules/core/fonts.nix
 
     ../../modules/desktop/wayland.nix
+    ../../modules/desktop/sddm.nix
     ../../modules/desktop/niri.nix
     ../../modules/desktop/noctalia.nix
 
     ../../modules/dev/git.nix
     ../../modules/dev/docker.nix
+    ../../modules/dev/web.nix
+
+    ../../modules/security/keyring.nix
   ];
 
   networking.hostName = "nixos";

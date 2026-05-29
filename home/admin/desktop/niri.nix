@@ -8,30 +8,32 @@ let
 in
 {
   programs.niri = {
-    config = lib.mkOptionDefault (lib.mkAfter [
-      (leaf "include" [
-        { optional = true; }
-        "noctalia.kdl"
-      ])
-      (plain "window-rule" [
-        (plain "background-effect" [
-          (leaf "blur" true)
-          (leaf "xray" false)
+    config = lib.mkOptionDefault (
+      lib.mkAfter [
+        (leaf "include" [
+          { optional = true; }
+          "noctalia.kdl"
         ])
-      ])
-      (plain "layer-rule" [
-        (leaf "match" { namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel)$"; })
-        (plain "background-effect" [
-          (leaf "xray" false)
+        (plain "window-rule" [
+          (plain "background-effect" [
+            (leaf "blur" true)
+            (leaf "xray" false)
+          ])
         ])
-      ])
-      (plain "blur" [
-        (leaf "passes" 2)
-        (leaf "offset" 3.0)
-        (leaf "noise" 0.03)
-        (leaf "saturation" 1.0)
-      ])
-    ]);
+        (plain "layer-rule" [
+          (leaf "match" { namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel)$"; })
+          (plain "background-effect" [
+            (leaf "xray" false)
+          ])
+        ])
+        (plain "blur" [
+          (leaf "passes" 2)
+          (leaf "offset" 3.0)
+          (leaf "noise" 0.03)
+          (leaf "saturation" 1.0)
+        ])
+      ]
+    );
 
     settings = {
       prefer-no-csd = true;
@@ -62,6 +64,7 @@ in
           { proportion = 0.66667; }
           { proportion = 1.0; }
         ];
+        default-column-width.proportion = 0.5;
       };
 
       window-rules = [

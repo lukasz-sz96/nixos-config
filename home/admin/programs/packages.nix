@@ -15,9 +15,6 @@
       fastfetch
       unzip
       tree
-      fnm
-      pnpm
-      yarn
       jq
     ])
     ++ [

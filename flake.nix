@@ -41,6 +41,7 @@
 
   outputs =
     inputs@{
+      self,
       nixpkgs,
       home-manager,
       niri,
@@ -54,6 +55,23 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          deadnix
+          git
+          nil
+          nixd
+          nixfmt
+          statix
+        ];
+
+        shellHook = ''
+          echo "nixos-config dev shell"
+          echo "  nix fmt          format Nix files"
+          echo "  nix flake check  run system and lint checks"
+        '';
+      };
+
       formatter.${system} = pkgs.writeShellApplication {
         name = "nixos-config-fmt";
         runtimeInputs = [
@@ -92,6 +110,50 @@
             format_path "$arg"
           done
         '';
+      };
+
+      checks.${system} = {
+        nixos = self.nixosConfigurations.nixos.config.system.build.toplevel;
+
+        format =
+          pkgs.runCommand "check-nix-format"
+            {
+              nativeBuildInputs = [
+                pkgs.findutils
+                pkgs.nixfmt
+              ];
+            }
+            ''
+              cp -r ${self} source
+              chmod -R u+w source
+              cd source
+              find . -path ./.git -prune -o -type f -name "*.nix" -print0 | xargs -0 nixfmt --check
+              touch $out
+            '';
+
+        deadnix =
+          pkgs.runCommand "check-deadnix"
+            {
+              nativeBuildInputs = [
+                pkgs.deadnix
+              ];
+            }
+            ''
+              deadnix --fail ${self}
+              touch $out
+            '';
+
+        statix =
+          pkgs.runCommand "check-statix"
+            {
+              nativeBuildInputs = [
+                pkgs.statix
+              ];
+            }
+            ''
+              statix check ${self}
+              touch $out
+            '';
       };
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {

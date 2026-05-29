@@ -5,6 +5,8 @@
     ./programs/packages.nix
     ./programs/neovim.nix
     ./programs/fish.nix
+    ./programs/git.nix
+    ./programs/direnv.nix
     ./programs/starship.nix
     ./programs/ghostty.nix
 
