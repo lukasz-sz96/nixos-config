@@ -26,5 +26,19 @@
 
   networking.hostName = "nixos";
 
+  fileSystems."/" = {
+    options = [
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/home" = {
+    options = [
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
   system.stateVersion = "26.05";
 }
