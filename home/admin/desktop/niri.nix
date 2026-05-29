@@ -49,7 +49,7 @@ in
       };
 
       layout = {
-        gaps = 8;
+        gaps = 10;
         center-focused-column = "never";
         focus-ring.enable = false;
         border = {
@@ -262,7 +262,7 @@ in
         "Mod+Ctrl+C".action.center-visible-columns = [ ];
         "Mod+M".action.maximize-column = [ ];
         "Mod+Ctrl+F".action.expand-column-to-available-width = [ ];
-        "Mod+F".action.fullscreen-window = [ ];
+        "Mod+F".action.maximize-column = [ ];
         "Mod+Shift+F".action.fullscreen-window = [ ];
         "Mod+V".action.toggle-window-floating = [ ];
         "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = [ ];
