@@ -47,7 +47,7 @@ in
         (plain "window-rule" [
           (plain "background-effect" [
             (leaf "blur" true)
-            (leaf "xray" false)
+            (leaf "xray" true)
             (leaf "noise" 0.05)
             (leaf "saturation" 2.4)
           ])
