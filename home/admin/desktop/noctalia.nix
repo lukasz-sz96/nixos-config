@@ -1,9 +1,6 @@
-{ config, ... }:
+{ ... }:
 
 {
-  xdg.configFile."noctalia/templates/starship-caelestia.toml".source =
-    ../config/noctalia/templates/starship-caelestia.toml;
-
   programs.noctalia = {
     enable = true;
 
@@ -13,11 +10,8 @@
         "ghostty"
         "kitty"
         "niri"
+        "starship"
       ];
-      user.starship_caelestia = {
-        input_path = "templates/starship-caelestia.toml";
-        output_path = "${config.home.homeDirectory}/.config/starship.toml";
-      };
     };
   };
 }
