@@ -9,6 +9,7 @@
     ./programs/direnv.nix
     ./programs/starship.nix
     ./programs/ghostty.nix
+    ./programs/kitty.nix
 
     ./desktop/niri.nix
     ./desktop/noctalia.nix
