@@ -179,8 +179,13 @@ in
       ];
 
       binds = {
+        "Mod+Return".action.spawn = "ghostty";
         "Mod+T".action.spawn = "kitty";
-        "Mod+D".action.spawn = "fuzzel";
+        "Mod+B".action.spawn = "zen";
+        "Mod+Shift+B".action.spawn = [
+          "zen"
+          "--private-window"
+        ];
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
         "Mod+Space".action.spawn = [
           "noctalia"
@@ -198,6 +203,12 @@ in
           "noctalia"
           "msg"
           "settings-toggle"
+        ];
+        "Mod+Shift+W".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "wallpaper"
         ];
         "XF86AudioRaiseVolume".action.spawn = [
           "noctalia"
