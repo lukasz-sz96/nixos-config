@@ -48,19 +48,24 @@ in
           (plain "background-effect" [
             (leaf "blur" true)
             (leaf "xray" false)
+            (leaf "noise" 0.05)
+            (leaf "saturation" 2.4)
           ])
         ])
         (plain "layer-rule" [
           (leaf "match" { namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel)$"; })
           (plain "background-effect" [
+            (leaf "blur" true)
             (leaf "xray" false)
+            (leaf "noise" 0.05)
+            (leaf "saturation" 2.6)
           ])
         ])
         (plain "blur" [
-          (leaf "passes" 2)
-          (leaf "offset" 3.0)
-          (leaf "noise" 0.03)
-          (leaf "saturation" 1.0)
+          (leaf "passes" 3)
+          (leaf "offset" 5.0)
+          (leaf "noise" 0.04)
+          (leaf "saturation" 1.8)
         ])
       ]
     );
@@ -81,7 +86,7 @@ in
       };
 
       layout = {
-        gaps = 10;
+        gaps = 28;
         center-focused-column = "never";
         focus-ring.enable = false;
         border = {

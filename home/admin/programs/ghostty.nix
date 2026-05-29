@@ -3,7 +3,7 @@
     enable = true;
 
     settings = {
-      background-opacity = 0.6;
+      background-opacity = 0.52;
       font-family = "JetBrainsMono Nerd Font";
       font-size = 13;
       theme = "noctalia";
