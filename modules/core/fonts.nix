@@ -5,6 +5,7 @@
     packages = with pkgs; [
       inter
       nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
       noto-fonts
       noto-fonts-color-emoji
     ];
