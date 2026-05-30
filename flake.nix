@@ -29,6 +29,23 @@
       url = "github:noctalia-dev/noctalia-shell/v5";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    impermanence.url = "github:nix-community/impermanence";
+
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
     };
@@ -44,15 +61,22 @@
       self,
       nixpkgs,
       home-manager,
-      niri,
       nix-cachyos-kernel,
       noctalia,
-      zen-browser,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      mkHost = import ./lib/mkHost.nix {
+        inherit
+          home-manager
+          inputs
+          nix-cachyos-kernel
+          nixpkgs
+          noctalia
+          ;
+      };
     in
     {
       devShells.${system}.default = pkgs.mkShell {
@@ -156,32 +180,10 @@
             '';
       };
 
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos = mkHost {
+        hostname = "nixos";
         inherit system;
-        specialArgs = { inherit inputs; };
-
-        modules = [
-          ./hosts/nixos/configuration.nix
-          niri.nixosModules.niri
-          home-manager.nixosModules.home-manager
-
-          {
-            nixpkgs.overlays = [
-              nix-cachyos-kernel.overlays.pinned
-            ];
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = { inherit inputs; };
-
-            home-manager.sharedModules = [
-              noctalia.homeModules.default
-            ];
-
-            home-manager.users.admin = import ./home/admin/home.nix;
-          }
-        ];
+        modules = [ ./hosts/nixos ];
       };
     };
 }
