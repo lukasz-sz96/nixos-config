@@ -14,7 +14,7 @@
 
     shellAliases = {
       rebuild = "sudo nixos-rebuild switch --flake path:$HOME/nixos-config#nixos";
-      update = "nix flake update path:$HOME/nixos-config && sudo nixos-rebuild switch --flake path:$HOME/nixos-config#nixos";
+      update = "nix flake update --flake path:$HOME/nixos-config && sudo nixos-rebuild switch --flake path:$HOME/nixos-config#nixos";
       nc = "cd $HOME/nixos-config";
       ll = "ls -la";
     };
