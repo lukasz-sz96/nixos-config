@@ -314,11 +314,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1780084541,
-        "narHash": "sha256-1dfrj9KRVjYdRQV677wHJVqSi1+IseAofINIIpPO+7E=",
+        "lastModified": 1780253365,
+        "narHash": "sha256-wcJ+6+Z+mfzBjClI0XsjOoGSW6o1RldVj6UETLzK+GQ=",
         "owner": "xddxdd",
         "repo": "nix-cachyos-kernel",
-        "rev": "bc4719a00b3e52764b947cb3c7f15a8b8769432e",
+        "rev": "236462fb93cb56e26e6a6801ba5edb6dad66be0d",
         "type": "github"
       },
       "original": {
@@ -393,11 +393,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1780011192,
-        "narHash": "sha256-luHrZG6I7Mwdt413XoDOYBpp9z1z6X23/5SNktwjM+k=",
+        "lastModified": 1780206209,
+        "narHash": "sha256-33WNQ5sssy+8+xhUz953aEnjR1Oh828j0DgLU1TfMqE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3242faf14b7611a62ce0f0071619438a08b65c12",
+        "rev": "45cf63e030188dd38532669b2450182bfc2d4653",
         "type": "github"
       },
       "original": {
@@ -409,11 +409,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1779877693,
-        "narHash": "sha256-NOF9NAREhxr50bbBfVcVOq+ArCMSoe8dP79Pk2uyARk=",
+        "lastModified": 1780030872,
+        "narHash": "sha256-u6WU/yd/o8iYQrHX3RAwO1hYa3LkoSL+WNQD0rJfJZQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4100e830e085863741bc69b156ec4ccd53ab5be0",
+        "rev": "e9a7635a57597d9754eccebdfc7045e6c8600e6b",
         "type": "github"
       },
       "original": {
@@ -441,11 +441,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1780117171,
-        "narHash": "sha256-XG65Gf2jqtbbjq98OD8asWm6TGXMX80e1rZ3UjUiIU8=",
+        "lastModified": 1780259000,
+        "narHash": "sha256-NC+7jL5eo8yLCz9yp7iMa98fyaECpYHuqG+SHZh02/A=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "bd74c3461dc3b36714d989789a0cc74152e7ac4f",
+        "rev": "057be57a6394b13e14d987ab7b5a8f608bd419d1",
         "type": "github"
       },
       "original": {
@@ -482,6 +482,22 @@
         "type": "github"
       }
     },
+    "qylock": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779736014,
+        "narHash": "sha256-17kRwrkdfe+hJdChMxove73zNCKcSi0nmSrO8Fh8hz0=",
+        "owner": "Darkkal44",
+        "repo": "qylock",
+        "rev": "cde4d11e9e3d385620becdc877a0521e40a55e47",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Darkkal44",
+        "repo": "qylock",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -492,6 +508,7 @@
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",
+        "qylock": "qylock",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"
       }

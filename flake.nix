@@ -54,6 +54,11 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    qylock = {
+      url = "github:Darkkal44/qylock";
+      flake = false;
+    };
   };
 
   outputs =
