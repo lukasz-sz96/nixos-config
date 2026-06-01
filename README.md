@@ -19,26 +19,24 @@ nix flake check
 flake.nix                 flake inputs, formatter, checks, dev shell, host output
 modules/                  dendritic flake-parts module tree
 modules/flake/            formatter, checks, dev shell, common flake settings
-modules/hosts/            NixOS host outputs
+modules/hosts/            NixOS host outputs and host-specific hardware modules
 modules/nixos/            workstation NixOS feature modules
 modules/home/shared/      shared Home Manager desktop, app, shell, editor, and theme profile
 modules/home/admin/       admin account module importing the shared profile
 modules/home/v/           v test-user account module importing the shared profile
-hosts/nixos/              generic hardware and filesystem labels
 secrets/                  sops-nix notes, no plaintext secrets
 ```
 
 ## Install
 
-Partition and mount the disk from the NixOS installer, then install the flake.
-The committed host config expects these labels:
+The host config uses filesystem labels instead of UUIDs:
 
 ```text
-NIXBOOT  EFI system partition, vfat, mounted at /boot
-NIXROOT  Btrfs root partition, with @ and @home subvolumes
+NIXBOOT  /boot, vfat
+NIXROOT  / and /home, btrfs subvolumes @ and @home
 ```
 
-A minimal Btrfs layout looks like this after formatting:
+For a fresh install, create the labels while formatting:
 
 ```sh
 mkfs.vfat -n NIXBOOT <efi-partition>
@@ -48,7 +46,19 @@ mount /dev/disk/by-label/NIXROOT /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 umount /mnt
+```
 
+For an existing install with the same layout, set the labels once:
+
+```sh
+sudo btrfs filesystem label / NIXROOT
+sudo fatlabel "$(findmnt -no SOURCE /boot)" NIXBOOT
+lsblk -f
+```
+
+Mount the install target:
+
+```sh
 mount -o subvol=@,compress=zstd,noatime /dev/disk/by-label/NIXROOT /mnt
 mkdir -p /mnt/home /mnt/boot
 mount -o subvol=@home,compress=zstd,noatime /dev/disk/by-label/NIXROOT /mnt/home
@@ -62,7 +72,7 @@ host name, and run:
 sudo nixos-install --flake /mnt/path/to/nixos-config#nixos
 ```
 
-`hosts/nixos/hardware.nix` is intentionally generic. If a machine needs local
+`modules/hosts/nixos/hardware.nix` is intentionally generic. If a machine needs local
 kernel modules, swap, LUKS, or different labels, patch that file in a private
 fork or local branch rather than committing disk UUIDs to the public config.
 
@@ -73,6 +83,14 @@ Normal rebuilds do not repartition disks, enroll Secure Boot keys, or enable an 
 ```sh
 nix flake check --no-build
 sudo nixos-rebuild switch --flake path:$HOME/nixos-config#nixos
+```
+
+When changing filesystem devices, labels, or mount options, use `boot` first so
+active mounts like `/home` are not restarted under your running session:
+
+```sh
+sudo nixos-rebuild boot --flake path:$HOME/nixos-config#nixos
+sudo reboot
 ```
 
 ## Prepared But Gated
