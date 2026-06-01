@@ -4,6 +4,8 @@ _:
   flake.modules.nixos.workstation = {
     hardware.sane.enable = true;
 
+    programs.steam.enable = true;
+
     services = {
       avahi = {
         enable = true;

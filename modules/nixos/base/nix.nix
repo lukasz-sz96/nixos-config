@@ -9,6 +9,8 @@
         pkg:
         builtins.elem (pkgs.lib.getName pkg) [
           "obsidian"
+          "steam"
+          "steam-unwrapped"
           "vscode"
         ];
 

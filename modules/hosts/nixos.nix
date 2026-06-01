@@ -28,6 +28,7 @@
             inputs.noctalia.homeModules.default
           ];
           users.admin = config.flake.modules.homeManager.admin;
+          users.v = config.flake.modules.homeManager.v;
         };
       }
     ];

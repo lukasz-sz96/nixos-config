@@ -19,6 +19,7 @@ _:
       };
 
       environment.systemPackages = with pkgs; [
+        xwayland-satellite
         wl-clipboard
         grim
         slurp
