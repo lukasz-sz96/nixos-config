@@ -10,7 +10,8 @@ _:
         # still live in dev shells when a project needs stricter pinning.
         nodejs_24
         corepack
-        fnm
+        mise
+        usage
         pnpm
         yarn
         bun
@@ -36,7 +37,6 @@ _:
         vscode-langservers-extracted
         yaml-language-server
         dockerfile-language-server
-        devenv
       ];
     };
 }
