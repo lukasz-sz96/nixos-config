@@ -18,11 +18,15 @@
 
           # Files/media
           celluloid
-          file-roller
+          kdePackages.ark
+          kdePackages.breeze-icons
+          kdePackages.dolphin
+          kdePackages.dolphin-plugins
+          kdePackages.ffmpegthumbs
+          kdePackages.kio-extras
+          kdePackages.kimageformats
           loupe
-          nautilus
           papers
-          sushi
           mpv
           obs-studio
           resources
@@ -54,6 +58,7 @@
           tokei
           tree
           unzip
+          yazi
           zoxide
 
           # Infra
@@ -70,7 +75,7 @@
       xdg.mimeApps = {
         enable = true;
         defaultApplications = {
-          "inode/directory" = "org.gnome.Nautilus.desktop";
+          "inode/directory" = "org.kde.dolphin.desktop";
           "text/html" = "zen.desktop";
           "text/xml" = "zen.desktop";
           "application/xhtml+xml" = "zen.desktop";
@@ -107,14 +112,14 @@
           "video/x-matroska" = "io.github.celluloid_player.Celluloid.desktop";
           "video/x-msvideo" = "io.github.celluloid_player.Celluloid.desktop";
 
-          "application/zip" = "org.gnome.FileRoller.desktop";
-          "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
-          "application/x-bzip2" = "org.gnome.FileRoller.desktop";
-          "application/x-compressed-tar" = "org.gnome.FileRoller.desktop";
-          "application/x-gzip" = "org.gnome.FileRoller.desktop";
-          "application/x-rar" = "org.gnome.FileRoller.desktop";
-          "application/x-tar" = "org.gnome.FileRoller.desktop";
-          "application/x-xz" = "org.gnome.FileRoller.desktop";
+          "application/zip" = "org.kde.ark.desktop";
+          "application/x-7z-compressed" = "org.kde.ark.desktop";
+          "application/x-bzip2" = "org.kde.ark.desktop";
+          "application/x-compressed-tar" = "org.kde.ark.desktop";
+          "application/x-gzip" = "org.kde.ark.desktop";
+          "application/x-rar" = "org.kde.ark.desktop";
+          "application/x-tar" = "org.kde.ark.desktop";
+          "application/x-xz" = "org.kde.ark.desktop";
 
           "application/json" = "dev.zed.Zed.desktop";
           "application/x-yaml" = "dev.zed.Zed.desktop";
