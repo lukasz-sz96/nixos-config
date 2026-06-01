@@ -1,7 +1,11 @@
-_:
+{ config, ... }:
 
 {
   flake.modules.homeManager.admin = {
+    imports = [
+      config.flake.modules.homeManager.shared
+    ];
+
     home = {
       username = "admin";
       homeDirectory = "/home/admin";

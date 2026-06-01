@@ -1,7 +1,11 @@
-_:
+{ config, ... }:
 
 {
   flake.modules.homeManager.v = {
+    imports = [
+      config.flake.modules.homeManager.shared
+    ];
+
     home = {
       username = "v";
       homeDirectory = "/home/v";
