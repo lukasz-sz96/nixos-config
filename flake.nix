@@ -15,6 +15,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    import-tree.url = "github:vic/import-tree";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,134 +68,5 @@
     };
   };
 
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      nix-cachyos-kernel,
-      noctalia,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      mkHost = import ./lib/mkHost.nix {
-        inherit
-          home-manager
-          inputs
-          nix-cachyos-kernel
-          nixpkgs
-          noctalia
-          ;
-      };
-    in
-    {
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          deadnix
-          git
-          nil
-          nixd
-          nixfmt
-          statix
-        ];
-
-        shellHook = ''
-          echo "nixos-config dev shell"
-          echo "  nix fmt          format Nix files"
-          echo "  nix flake check  run system and lint checks"
-        '';
-      };
-
-      formatter.${system} = pkgs.writeShellApplication {
-        name = "nixos-config-fmt";
-        runtimeInputs = [
-          pkgs.findutils
-          pkgs.nixfmt
-        ];
-        text = ''
-          format_path() {
-            local path="$1"
-
-            if [ -d "$path" ]; then
-              while IFS= read -r -d "" file; do
-                nixfmt "$file"
-              done < <(find "$path" -type f -name "*.nix" -print0)
-            elif [ -f "$path" ]; then
-              case "$path" in
-                *.nix) nixfmt "$path" ;;
-              esac
-            fi
-          }
-
-          args=()
-
-          if [ "$#" -eq 0 ]; then
-            args=(".")
-          else
-            for arg in "$@"; do
-              case "$arg" in
-                path:*) args+=("''${arg#path:}") ;;
-                *) args+=("$arg") ;;
-              esac
-            done
-          fi
-
-          for arg in "''${args[@]}"; do
-            format_path "$arg"
-          done
-        '';
-      };
-
-      checks.${system} = {
-        nixos = self.nixosConfigurations.nixos.config.system.build.toplevel;
-
-        format =
-          pkgs.runCommand "check-nix-format"
-            {
-              nativeBuildInputs = [
-                pkgs.findutils
-                pkgs.nixfmt
-              ];
-            }
-            ''
-              cp -r ${self} source
-              chmod -R u+w source
-              cd source
-              find . -path ./.git -prune -o -type f -name "*.nix" -print0 | xargs -0 nixfmt --check
-              touch $out
-            '';
-
-        deadnix =
-          pkgs.runCommand "check-deadnix"
-            {
-              nativeBuildInputs = [
-                pkgs.deadnix
-              ];
-            }
-            ''
-              deadnix --fail ${self}
-              touch $out
-            '';
-
-        statix =
-          pkgs.runCommand "check-statix"
-            {
-              nativeBuildInputs = [
-                pkgs.statix
-              ];
-            }
-            ''
-              statix check ${self}
-              touch $out
-            '';
-      };
-
-      nixosConfigurations.nixos = mkHost {
-        hostname = "nixos";
-        inherit system;
-        modules = [ ./hosts/nixos ];
-      };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

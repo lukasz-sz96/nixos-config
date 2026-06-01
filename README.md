@@ -11,22 +11,19 @@ nix fmt
 nix flake check
 ```
 
-`rebuild` and `update` are Fish aliases defined in `users/admin/programs/fish.nix`.
+`rebuild` and `update` are Fish aliases defined in `modules/home/admin/programs/fish.nix`.
 
 ## Layout
 
 ```text
 flake.nix                 flake inputs, formatter, checks, dev shell, host output
-lib/mkHost.nix            shared host constructor
-hosts/nixos/              machine entrypoint, hardware config, Disko template
-profiles/nixos/base/      base OS, users, Nix, fonts, essential packages
-profiles/nixos/boot/      systemd-boot and gated Secure Boot support
-profiles/nixos/hardware/  audio, Bluetooth, graphics, networking, power, zram
-profiles/nixos/storage/   Btrfs policy and gated impermanence support
-profiles/nixos/security/  firewall, keyring, polkit, sops-nix, SSH defaults
-profiles/nixos/desktop/   Wayland, SDDM, Niri, Noctalia system services
-profiles/nixos/dev/       Git, containers, web development tools
-users/admin/              Home Manager user config
+modules/                  dendritic flake-parts module tree
+modules/flake/            formatter, checks, dev shell, common flake settings
+modules/hosts/            NixOS host outputs
+modules/nixos/            workstation NixOS feature modules
+modules/home/admin/       admin Home Manager feature modules and config assets
+modules/home/v/           v Home Manager feature modules and config assets
+hosts/nixos/              hardware config and Disko template
 secrets/                  sops-nix notes, no plaintext secrets
 ```
 
@@ -74,10 +71,21 @@ For service-heavy projects, `devenv` is installed globally. A minimal project ca
 
 ## Git Notes
 
-Local flake evaluation only sees files tracked by Git. After adding a new module, run:
+The flake uses the dendritic pattern: `flake.nix` is the entry point, and each
+Nix file under `modules/` is a flake-parts module imported automatically by
+`import-tree`. Feature modules merge into shared lower-level modules such as
+`flake.modules.nixos.workstation` and `flake.modules.homeManager.admin`.
+
+When evaluating with `.#...`, local flake evaluation only sees files tracked by
+Git. After adding a new module, run:
 
 ```sh
 git add path/to/new-file.nix
 ```
 
 before `rebuild`, `nix flake check`, or `nix fmt` if the file is imported by the flake.
+For quick local checks without staging, use an explicit path flake reference:
+
+```sh
+nix flake check --no-build path:$HOME/nixos-config
+```
