@@ -1,3 +1,7 @@
 result
 result-*
 *.log
+.superpowers/
+docs/superpowers/
+hosts/*/hardware-configuration.nix
+hosts/*/hardware.local.nix

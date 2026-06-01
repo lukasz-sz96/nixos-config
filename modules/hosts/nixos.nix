@@ -9,7 +9,7 @@
       inputs.lanzaboote.nixosModules.lanzaboote
       inputs.sops-nix.nixosModules.sops
       inputs.home-manager.nixosModules.home-manager
-      ../../hosts/nixos/hardware-configuration.nix
+      ../../hosts/nixos/hardware.nix
       config.flake.modules.nixos.workstation
 
       {

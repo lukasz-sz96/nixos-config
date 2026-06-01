@@ -24,9 +24,47 @@ modules/nixos/            workstation NixOS feature modules
 modules/home/shared/      shared Home Manager desktop, app, shell, editor, and theme profile
 modules/home/admin/       admin account module importing the shared profile
 modules/home/v/           v test-user account module importing the shared profile
-hosts/nixos/              hardware config and Disko template
+hosts/nixos/              generic hardware and filesystem labels
 secrets/                  sops-nix notes, no plaintext secrets
 ```
+
+## Install
+
+Partition and mount the disk from the NixOS installer, then install the flake.
+The committed host config expects these labels:
+
+```text
+NIXBOOT  EFI system partition, vfat, mounted at /boot
+NIXROOT  Btrfs root partition, with @ and @home subvolumes
+```
+
+A minimal Btrfs layout looks like this after formatting:
+
+```sh
+mkfs.vfat -n NIXBOOT <efi-partition>
+mkfs.btrfs -L NIXROOT <root-partition>
+
+mount /dev/disk/by-label/NIXROOT /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+umount /mnt
+
+mount -o subvol=@,compress=zstd,noatime /dev/disk/by-label/NIXROOT /mnt
+mkdir -p /mnt/home /mnt/boot
+mount -o subvol=@home,compress=zstd,noatime /dev/disk/by-label/NIXROOT /mnt/home
+mount /dev/disk/by-label/NIXBOOT /mnt/boot
+```
+
+Then clone this repo under `/mnt`, edit anything local such as usernames or
+host name, and run:
+
+```sh
+sudo nixos-install --flake /mnt/path/to/nixos-config#nixos
+```
+
+`hosts/nixos/hardware.nix` is intentionally generic. If a machine needs local
+kernel modules, swap, LUKS, or different labels, patch that file in a private
+fork or local branch rather than committing disk UUIDs to the public config.
 
 ## Safe Rebuild
 
@@ -39,7 +77,6 @@ sudo nixos-rebuild switch --flake path:$HOME/nixos-config#nixos
 
 ## Prepared But Gated
 
-- `hosts/nixos/disks.nix` is a Disko LUKS+Btrfs reinstall template. Use it only from an installer when you intentionally want to repartition.
 - `workstation.secureBoot.enable` gates Lanzaboote. Leave it off until Secure Boot keys exist under `/etc/secureboot`.
 - `workstation.impermanence.enable` gates impermanence. Leave it off until `/persist` exists and all required paths are declared.
 - `sops-nix` is wired to the host SSH key by default, but no encrypted secrets are committed.
