@@ -34,6 +34,69 @@ _:
         "panel-toggle"
         "wallpaper"
       ];
+      "Mod+Ctrl+V".action.spawn = [
+        "noctalia"
+        "msg"
+        "panel-toggle"
+        "clipboard"
+      ];
+      "Mod+N".action.spawn = [
+        "noctalia"
+        "msg"
+        "notification-clear-active"
+      ];
+      "Mod+Shift+N".action.spawn = [
+        "noctalia"
+        "msg"
+        "notification-dnd-toggle"
+      ];
+      "Mod+Ctrl+Shift+Space".action.spawn = [
+        "noctalia"
+        "msg"
+        "theme-mode-toggle"
+      ];
+      "Mod+Alt+L".action.spawn = [
+        "noctalia"
+        "msg"
+        "session"
+        "lock"
+      ];
+      "Mod+Shift+S".action.spawn = [
+        "noctalia"
+        "msg"
+        "screenshot-region"
+      ];
+      "Mod+Ctrl+Shift+S".action.spawn = [
+        "noctalia"
+        "msg"
+        "screenshot-fullscreen"
+      ];
+      "Mod+Ctrl+Print".action.spawn = "ocr-region";
+      "Mod+Ctrl+Alt+T".action.spawn = "notice-now";
+      "Mod+Shift+G".action.spawn = [
+        "ghostty"
+        "-e"
+        "lazygit"
+      ];
+      "Mod+Shift+D".action.spawn = [
+        "ghostty"
+        "-e"
+        "lazydocker"
+      ];
+      "Mod+Shift+M".action.spawn = [
+        "ghostty"
+        "-e"
+        "btop"
+      ];
+      "Mod+Alt+Return".action.spawn = [
+        "ghostty"
+        "-e"
+        "tmux"
+        "new-session"
+        "-A"
+        "-s"
+        "main"
+      ];
       "XF86AudioRaiseVolume".action.spawn = [
         "noctalia"
         "msg"
