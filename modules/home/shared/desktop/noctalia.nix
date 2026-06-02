@@ -49,11 +49,11 @@ _:
 
         settings = {
           shell = {
-            corner_radius_scale = 1.15;
+            corner_radius_scale = 1.25;
 
             shadow = {
               direction = "down";
-              alpha = 0.65;
+              alpha = 0.52;
             };
 
             panel = {
@@ -78,7 +78,7 @@ _:
           theme = {
             mode = "dark";
             source = "wallpaper";
-            wallpaper_scheme = "vibrant";
+            wallpaper_scheme = "m3-tonal-spot";
 
             templates = {
               enable_builtin_templates = true;
@@ -117,7 +117,7 @@ _:
 
           bar.default = {
             background_opacity = 0.58;
-            radius = 14;
+            radius = 18;
             margin_ends = 300;
             margin_edge = 10;
             shadow = true;
