@@ -1,0 +1,17 @@
+install:
+    pnpm install
+
+services:
+    docker compose up -d
+
+services-down:
+    docker compose down
+
+dev:
+    pnpm dev
+
+test:
+    pnpm test
+
+build:
+    pnpm build

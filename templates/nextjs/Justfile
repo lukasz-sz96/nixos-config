@@ -1,0 +1,9 @@
+bootstrap:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    tmp="$(mktemp -d)"
+    trap 'rm -rf "$tmp"' EXIT
+    cd "$tmp"
+    pnpm create next-app@latest app --yes --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --use-pnpm --disable-git
+    cd "$OLDPWD"
+    tar -C "$tmp/app" -cf - . | tar -xf -

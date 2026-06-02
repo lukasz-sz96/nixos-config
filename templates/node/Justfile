@@ -1,0 +1,11 @@
+install:
+    pnpm install
+
+dev:
+    pnpm dev
+
+test:
+    pnpm test
+
+build:
+    pnpm build

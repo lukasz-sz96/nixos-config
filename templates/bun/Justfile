@@ -1,0 +1,11 @@
+install:
+    bun install
+
+dev:
+    bun dev
+
+test:
+    bun test
+
+typecheck:
+    bunx tsc --noEmit

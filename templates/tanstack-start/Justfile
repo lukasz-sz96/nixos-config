@@ -1,0 +1,19 @@
+bootstrap:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    tmp="$(mktemp -d)"
+    trap 'rm -rf "$tmp"' EXIT
+    cd "$tmp"
+    pnpm dlx @tanstack/cli@latest create app --package-manager pnpm -y --no-git
+    cd "$OLDPWD"
+    tar -C "$tmp/app" -cf - . | tar -xf -
+
+bootstrap-bun:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    tmp="$(mktemp -d)"
+    trap 'rm -rf "$tmp"' EXIT
+    cd "$tmp"
+    bunx @tanstack/cli@latest create app --package-manager bun -y --no-git
+    cd "$OLDPWD"
+    tar -C "$tmp/app" -cf - . | tar -xf -

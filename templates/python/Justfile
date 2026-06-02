@@ -1,0 +1,11 @@
+sync:
+    uv sync
+
+test:
+    uv run pytest
+
+lint:
+    ruff check .
+
+typecheck:
+    pyright
