@@ -5,10 +5,10 @@ _:
     programs.niri.settings.window-rules = [
       {
         geometry-corner-radius = {
-          top-left = 12.0;
-          top-right = 12.0;
-          bottom-right = 12.0;
-          bottom-left = 12.0;
+          top-left = 18.0;
+          top-right = 18.0;
+          bottom-right = 18.0;
+          bottom-left = 18.0;
         };
         clip-to-geometry = true;
       }
