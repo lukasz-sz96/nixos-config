@@ -167,11 +167,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780099287,
-        "narHash": "sha256-efIPwVGtIWIjWcznhaop6XN6HxnOL8800hF6CBNvlqQ=",
+        "lastModified": 1780408569,
+        "narHash": "sha256-s7Tv6FUQThRAvW8En8XVC6HMb0uiikzVccCcCo9u/Bg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7d8127d308c3fb9664f7e643eec944be74ebb37d",
+        "rev": "f384af1bec6423a0d4ba1855917ab948f64e5808",
         "type": "github"
       },
       "original": {
@@ -274,11 +274,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1780062130,
-        "narHash": "sha256-3XF+oy0PX4aajJw2RNB8rlMpyu0eXCG4pGH7fe94yBg=",
+        "lastModified": 1780348240,
+        "narHash": "sha256-V4QJAR5+AHUV31KOwrUVE8efOC9bkhLHbvkXT05I0mY=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "3cb351d73c357a4e413f59c4551d219118791c14",
+        "rev": "134a4f01eff9291806eab0e8d9fe31bbda7587f3",
         "type": "github"
       },
       "original": {
@@ -424,11 +424,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1780030872,
-        "narHash": "sha256-u6WU/yd/o8iYQrHX3RAwO1hYa3LkoSL+WNQD0rJfJZQ=",
+        "lastModified": 1780336545,
+        "narHash": "sha256-vhVhuXzFrIOfcssC/9hDHx7MHzDKjF3keHuREOQqQiQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e9a7635a57597d9754eccebdfc7045e6c8600e6b",
+        "rev": "4df1b885d76a54e1aa1a318f8d16fd6005b6401f",
         "type": "github"
       },
       "original": {
@@ -456,11 +456,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1780326184,
-        "narHash": "sha256-PUQ87IDZRertLgRVGT2CGslHTTpajxoyaDAdbFjzsvg=",
+        "lastModified": 1780434820,
+        "narHash": "sha256-/mpsCHkJp447E3kvhu7E2bot7qb+zN1R81Tt4EXiFNM=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "3c377b97aa02156afb79139b571dd9be16983d07",
+        "rev": "808574bfbe8380fff03e5e5aa18ea4ade1635fda",
         "type": "github"
       },
       "original": {
@@ -500,11 +500,11 @@
     "qylock": {
       "flake": false,
       "locked": {
-        "lastModified": 1779736014,
-        "narHash": "sha256-17kRwrkdfe+hJdChMxove73zNCKcSi0nmSrO8Fh8hz0=",
+        "lastModified": 1780419040,
+        "narHash": "sha256-NfCuiVlJsXp3k1nK9XieKdL0v/pbiMKfyU5A3Gc3fpk=",
         "owner": "Darkkal44",
         "repo": "qylock",
-        "rev": "cde4d11e9e3d385620becdc877a0521e40a55e47",
+        "rev": "3ecb79f621d5bfc2fbc6bfd37c3b12f0214601ac",
         "type": "github"
       },
       "original": {
