@@ -32,34 +32,20 @@ _:
             return color * opacity;
         }
       '';
+
+      spring = stiffness: {
+        damping-ratio = 1.0;
+        inherit stiffness;
+        epsilon = 0.0001;
+      };
     in
     {
       programs.niri.settings.animations = {
-        workspace-switch.kind.spring = {
-          damping-ratio = 1.0;
-          stiffness = 1000;
-          epsilon = 0.0001;
-        };
-        horizontal-view-movement.kind.spring = {
-          damping-ratio = 1.0;
-          stiffness = 1000;
-          epsilon = 0.0001;
-        };
-        window-movement.kind.spring = {
-          damping-ratio = 1.0;
-          stiffness = 1000;
-          epsilon = 0.0001;
-        };
-        window-resize.kind.spring = {
-          damping-ratio = 1.0;
-          stiffness = 1000;
-          epsilon = 0.0001;
-        };
-        overview-open-close.kind.spring = {
-          damping-ratio = 1.0;
-          stiffness = 850;
-          epsilon = 0.0001;
-        };
+        workspace-switch.kind.spring = spring 1000;
+        horizontal-view-movement.kind.spring = spring 1000;
+        window-movement.kind.spring = spring 1000;
+        window-resize.kind.spring = spring 1000;
+        overview-open-close.kind.spring = spring 850;
         window-open = {
           kind.easing = {
             duration-ms = 300;
