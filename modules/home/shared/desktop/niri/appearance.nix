@@ -35,6 +35,10 @@
                 (leaf "saturation" 2.6)
               ])
             ])
+            (plain "layer-rule" [
+              (leaf "match" { namespace = "^noctalia-backdrop"; })
+              (leaf "place-within-backdrop" true)
+            ])
             (plain "blur" [
               (leaf "passes" 3)
               (leaf "offset" 5.0)
