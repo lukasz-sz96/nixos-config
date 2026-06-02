@@ -70,7 +70,7 @@ _:
           };
 
           backdrop = {
-            enabled = false;
+            enabled = true;
             blur_intensity = 0.85;
             tint_intensity = 0.45;
           };
@@ -123,6 +123,7 @@ _:
             shadow = true;
             start = [
               "launcher"
+              "wallpaper"
               "workspaces"
               "active_window"
             ];
@@ -139,6 +140,8 @@ _:
               "volume"
               "brightness"
               "battery"
+              "screenshot"
+              "theme_mode"
               "control-center"
               "session"
             ];
