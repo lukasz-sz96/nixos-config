@@ -57,6 +57,39 @@
         '';
       };
 
+      remindPrompt = pkgs.writeShellApplication {
+        name = "remind-prompt";
+        runtimeInputs = with pkgs; [
+          coreutils
+          libnotify
+          systemd
+          zenity
+        ];
+        text = ''
+          result="$(
+            zenity --forms \
+              --title="Reminder" \
+              --text="Schedule a reminder" \
+              --add-entry="Delay, e.g. 20m or 2h" \
+              --add-entry="Message"
+          )" || exit 0
+
+          delay="''${result%%|*}"
+          message="''${result#*|}"
+
+          if [ -z "$delay" ] || [ -z "$message" ]; then
+            notify-send "Reminder skipped" "Both delay and message are required."
+            exit 1
+          fi
+
+          unit="reminder-$(date +%s)"
+          systemd-run --user --quiet --unit="$unit" --on-active="$delay" \
+            ${pkgs.libnotify}/bin/notify-send "Reminder" "$message"
+
+          notify-send "Reminder set" "$message in $delay"
+        '';
+      };
+
       noticeNow = pkgs.writeShellApplication {
         name = "notice-now";
         runtimeInputs = with pkgs; [
@@ -72,6 +105,7 @@
       home.packages =
         (with pkgs; [
           # Desktop
+          chromium
           firefox
           obsidian
           vscode
@@ -126,7 +160,6 @@
           procs
           python313
           ripgrep-all
-          tmux
           tokei
           tree
           unzip
@@ -145,6 +178,7 @@
           noticeNow
           ocrRegion
           remind
+          remindPrompt
           inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
 
