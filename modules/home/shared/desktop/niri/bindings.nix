@@ -196,7 +196,7 @@ _:
         action.toggle-overview = [ ];
       };
       "Print".action.screenshot = [ ];
-      "Mod+E".action.spawn = "dolphin";
+      "Mod+E".action.spawn = "nautilus";
       "Ctrl+Print".action.screenshot-screen = [ ];
       "Alt+Print".action.screenshot-window = [ ];
       "Mod+Escape" = {
