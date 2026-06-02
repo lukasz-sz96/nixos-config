@@ -22,9 +22,16 @@ _:
         XCURSOR_SIZE = toString cursorSize;
       };
 
-      programs.niri.settings.environment = {
-        XCURSOR_THEME = cursorTheme;
-        XCURSOR_SIZE = toString cursorSize;
+      programs.niri.settings = {
+        cursor = {
+          theme = cursorTheme;
+          size = cursorSize;
+        };
+
+        environment = {
+          XCURSOR_THEME = cursorTheme;
+          XCURSOR_SIZE = toString cursorSize;
+        };
       };
 
       dconf.settings."org/gnome/desktop/interface" = {
