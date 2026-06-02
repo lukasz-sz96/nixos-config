@@ -38,6 +38,10 @@ _:
       extraConfig = ''
         include themes/noctalia.conf
       '';
+
+      shellIntegration.enableFishIntegration = true;
     };
+
+    home.sessionVariables.TERMINAL = "kitty";
   };
 }
