@@ -3,7 +3,7 @@ _:
 {
   flake.modules.homeManager.shared = {
     programs.niri.settings.binds = {
-      "Mod+Return".action.spawn = "ghostty";
+      "Mod+Return".action.spawn = "kitty";
       "Mod+T".action.spawn = "kitty";
       "Mod+B".action.spawn = "zen";
       "Mod+Shift+B".action.spawn = [
@@ -73,29 +73,21 @@ _:
       ];
       "Mod+Ctrl+Print".action.spawn = "ocr-region";
       "Mod+Ctrl+Alt+T".action.spawn = "notice-now";
+      "Mod+Ctrl+R".action.spawn = "remind-prompt";
       "Mod+Shift+G".action.spawn = [
-        "ghostty"
+        "kitty"
         "-e"
         "lazygit"
       ];
       "Mod+Shift+D".action.spawn = [
-        "ghostty"
+        "kitty"
         "-e"
         "lazydocker"
       ];
       "Mod+Shift+M".action.spawn = [
-        "ghostty"
+        "kitty"
         "-e"
         "btop"
-      ];
-      "Mod+Alt+Return".action.spawn = [
-        "ghostty"
-        "-e"
-        "tmux"
-        "new-session"
-        "-A"
-        "-s"
-        "main"
       ];
       "XF86AudioRaiseVolume".action.spawn = [
         "noctalia"
