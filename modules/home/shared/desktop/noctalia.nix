@@ -118,8 +118,8 @@ _:
           bar.default = {
             background_opacity = 0.58;
             radius = 14;
-            margin_h = 180;
-            margin_v = 10;
+            margin_ends = 300;
+            margin_edge = 10;
             shadow = true;
             start = [
               "launcher"
@@ -145,6 +145,11 @@ _:
               "control-center"
               "session"
             ];
+          };
+
+          widget.workspaces = {
+            type = "workspaces";
+            minimal = true;
           };
 
           notification.background_opacity = 0.78;
