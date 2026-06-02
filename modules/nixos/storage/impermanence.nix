@@ -8,6 +8,25 @@
       ...
     }:
 
+    let
+      persistedUserDirectories = [
+        ".cache/direnv"
+        ".config/gh"
+        ".config/sops"
+        ".local/share/direnv"
+        ".local/share/fish"
+        ".local/share/keyrings"
+        ".mozilla"
+        ".ssh"
+        "Desktop"
+        "Documents"
+        "Downloads"
+        "Music"
+        "Pictures"
+        "Projects"
+        "Videos"
+      ];
+    in
     {
       imports = [
         inputs.impermanence.nixosModules.impermanence
@@ -32,43 +51,9 @@
             "/etc/ssh/ssh_host_ed25519_key"
             "/etc/ssh/ssh_host_ed25519_key.pub"
           ];
-          users.admin = {
-            directories = [
-              ".cache/direnv"
-              ".config/gh"
-              ".config/sops"
-              ".local/share/direnv"
-              ".local/share/fish"
-              ".local/share/keyrings"
-              ".mozilla"
-              ".ssh"
-              "Desktop"
-              "Documents"
-              "Downloads"
-              "Music"
-              "Pictures"
-              "Projects"
-              "Videos"
-            ];
-          };
-          users.v = {
-            directories = [
-              ".cache/direnv"
-              ".config/gh"
-              ".config/sops"
-              ".local/share/direnv"
-              ".local/share/fish"
-              ".local/share/keyrings"
-              ".mozilla"
-              ".ssh"
-              "Desktop"
-              "Documents"
-              "Downloads"
-              "Music"
-              "Pictures"
-              "Projects"
-              "Videos"
-            ];
+          users = {
+            admin.directories = persistedUserDirectories;
+            v.directories = persistedUserDirectories;
           };
         };
       };
