@@ -2,6 +2,8 @@
 
 Personal NixOS configuration for a Niri + Noctalia Wayland desktop and a modern web development workflow.
 
+![NixOS Niri Noctalia desktop preview](assets/preview.png)
+
 ## Daily Commands
 
 ```sh
