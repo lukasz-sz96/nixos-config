@@ -164,7 +164,6 @@
           tree
           unzip
           watchexec
-          yazi
           zoxide
 
           # Infra
