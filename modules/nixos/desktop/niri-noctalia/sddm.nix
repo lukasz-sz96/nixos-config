@@ -6,7 +6,7 @@
 
     let
       cursorTheme = "Bibata-Modern-Ice";
-      cursorSize = 24;
+      cursorSize = 22;
 
       # Pick one Qylock theme folder name here.
       qylockTheme = "winter";
