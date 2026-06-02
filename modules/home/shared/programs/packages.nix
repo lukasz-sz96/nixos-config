@@ -4,6 +4,70 @@
   flake.modules.homeManager.shared =
     { pkgs, ... }:
 
+    let
+      ocrRegion = pkgs.writeShellApplication {
+        name = "ocr-region";
+        runtimeInputs = with pkgs; [
+          coreutils
+          gnused
+          grim
+          libnotify
+          slurp
+          tesseract
+          wl-clipboard
+        ];
+        text = ''
+          image="$(mktemp --suffix=.png)"
+          trap 'rm -f "$image"' EXIT
+
+          geometry="$(slurp)" || exit 0
+          grim -g "$geometry" "$image"
+
+          text="$(tesseract "$image" stdout --psm 6 2>/dev/null | sed '/^[[:space:]]*$/d')"
+          if [ -n "$text" ]; then
+            printf '%s' "$text" | wl-copy
+            notify-send "OCR copied" "Recognized text is in the clipboard."
+          else
+            notify-send "OCR empty" "No text was recognized in the selected region."
+          fi
+        '';
+      };
+
+      remind = pkgs.writeShellApplication {
+        name = "remind";
+        runtimeInputs = with pkgs; [
+          coreutils
+          libnotify
+          systemd
+        ];
+        text = ''
+          if [ "$#" -lt 2 ]; then
+            echo "usage: remind <delay> <message...>"
+            echo "example: remind 20m stretch"
+            exit 1
+          fi
+
+          delay="$1"
+          shift
+          message="$*"
+          unit="reminder-$(date +%s)"
+
+          systemd-run --user --quiet --unit="$unit" --on-active="$delay" \
+            ${pkgs.libnotify}/bin/notify-send "Reminder" "$message"
+        '';
+      };
+
+      noticeNow = pkgs.writeShellApplication {
+        name = "notice-now";
+        runtimeInputs = with pkgs; [
+          coreutils
+          libnotify
+        ];
+        text = ''
+          notify-send "Now" "$(date '+%A, %d %B %Y %H:%M')"
+        '';
+      };
+    in
     {
       home.packages =
         (with pkgs; [
@@ -41,19 +105,32 @@
           atuin
           bat
           btop
+          comma
           duf
           dust
+          entr
           eza
           fastfetch
           fd
           fzf
+          gh-dash
           hyperfine
           jq
+          just
+          lsof
+          mailpit
+          nh
+          nix-index
+          nix-output-monitor
+          nvd
           procs
+          python313
           ripgrep-all
+          tmux
           tokei
           tree
           unzip
+          watchexec
           yazi
           zoxide
 
@@ -65,6 +142,9 @@
           opentofu
         ])
         ++ [
+          noticeNow
+          ocrRegion
+          remind
           inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
 
