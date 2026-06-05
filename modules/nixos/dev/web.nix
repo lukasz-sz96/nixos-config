@@ -6,8 +6,7 @@ _:
 
     {
       environment.systemPackages = with pkgs; [
-        # JavaScript runtimes and package managers. Per-project versions should
-        # still live in dev shells when a project needs stricter pinning.
+        # JavaScript runtimes and package managers.
         nodejs_24
         corepack
         mise
@@ -16,6 +15,9 @@ _:
         yarn
         bun
         deno
+        typescript
+        prettier
+        vite
 
         # Local web app dependencies and service clients.
         docker-compose
