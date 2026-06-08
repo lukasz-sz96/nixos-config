@@ -10,6 +10,7 @@ _:
       };
 
       settings = {
+        auto_reload_config = -1;
         background_opacity = "0.52";
         confirm_os_window_close = 0;
         cursor_shape = "beam";
