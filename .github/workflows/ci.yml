@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Nix checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            accept-flake-config = true
+
+      - name: Flake check
+        run: nix flake check --no-build
+
+      - name: Format check
+        run: nix build .#checks.x86_64-linux.format
+
+      - name: Deadnix check
+        run: nix build .#checks.x86_64-linux.deadnix
+
+      - name: Statix check
+        run: nix build .#checks.x86_64-linux.statix
