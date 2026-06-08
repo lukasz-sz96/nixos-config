@@ -19,6 +19,7 @@ _:
           { app-id = "^firefox$"; }
         ];
         default-column-width.proportion = 0.66667;
+        open-on-workspace = "browser";
         draw-border-with-background = false;
       }
       {
@@ -28,7 +29,8 @@ _:
           { app-id = "^Code$"; }
           { app-id = "^VSCodium$"; }
         ];
-        default-column-width.proportion = 0.66667;
+        default-column-width.proportion = 0.75;
+        open-on-workspace = "code";
       }
       {
         matches = [
@@ -42,7 +44,10 @@ _:
           { app-id = "^vesktop$"; }
           { app-id = "^dev\\.vencord\\.Vesktop$"; }
         ];
-        default-column-width.proportion = 0.5;
+        open-on-workspace = "chat";
+        open-floating = true;
+        default-column-width.fixed = 560;
+        default-window-height.fixed = 760;
       }
       {
         matches = [
@@ -82,6 +87,7 @@ _:
           { app-id = "^net\\.lutris\\.Lutris$"; }
         ];
         default-column-width.proportion = 1.0;
+        open-on-workspace = "gaming";
         variable-refresh-rate = true;
       }
       {
@@ -101,6 +107,7 @@ _:
         open-floating = true;
         default-column-width.fixed = 1080;
         default-window-height.fixed = 920;
+        open-on-workspace = "aesthetic";
       }
     ];
   };
