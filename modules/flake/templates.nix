@@ -19,7 +19,7 @@ _:
 
     rust = {
       path = ../../templates/rust;
-      description = "Rust binary project with cargo, rustfmt, clippy, and a Nix dev shell";
+      description = "Rust binary project with cargo, rustfmt, clippy, rust-analyzer, and a Nix dev shell";
     };
 
     fullstack = {

@@ -6,4 +6,4 @@ cargo run
 cargo test
 ```
 
-This template uses Cargo, rustfmt, and clippy.
+This template uses Cargo, rustfmt, clippy, and rust-analyzer.
