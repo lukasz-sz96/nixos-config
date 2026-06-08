@@ -18,66 +18,7 @@ _:
           { app-id = "^zen-browser$"; }
           { app-id = "^firefox$"; }
         ];
-        default-column-width.proportion = 0.66667;
-        open-on-workspace = "browser";
         draw-border-with-background = false;
-      }
-      {
-        matches = [
-          { app-id = "^dev\\.zed\\.Zed$"; }
-          { app-id = "^code$"; }
-          { app-id = "^Code$"; }
-          { app-id = "^VSCodium$"; }
-        ];
-        default-column-width.proportion = 0.75;
-        open-on-workspace = "code";
-      }
-      {
-        matches = [
-          { app-id = "^obsidian$"; }
-          { app-id = "^md\\.obsidian\\.Obsidian$"; }
-        ];
-        default-column-width.proportion = 0.66667;
-      }
-      {
-        matches = [
-          { app-id = "^vesktop$"; }
-          { app-id = "^dev\\.vencord\\.Vesktop$"; }
-        ];
-        open-on-workspace = "chat";
-        open-floating = true;
-        default-column-width.fixed = 560;
-        default-window-height.fixed = 760;
-      }
-      {
-        matches = [
-          { app-id = "^bruno$"; }
-          { app-id = "^com\\.usebruno\\.Bruno$"; }
-          { app-id = "^DBeaver$"; }
-          { app-id = "^dbeaver$"; }
-          { app-id = "^org\\.jkiss\\.dbeaver\\.core\\.DBeaver$"; }
-        ];
-        default-column-width.proportion = 0.66667;
-      }
-      {
-        matches = [
-          { app-id = "^org\\.gnome\\.Nautilus$"; }
-          { app-id = "^org\\.gnome\\.FileRoller$"; }
-          { app-id = "^org\\.gnome\\.Loupe$"; }
-          { app-id = "^org\\.gnome\\.Papers$"; }
-          { app-id = "^io\\.github\\.celluloid_player\\.Celluloid$"; }
-          { app-id = "^mpv$"; }
-          { app-id = "^pavucontrol$"; }
-        ];
-        open-floating = true;
-        default-column-width.proportion = 0.5;
-      }
-      {
-        matches = [
-          { app-id = "^com\\.obsproject\\.Studio$"; }
-          { app-id = "^obs$"; }
-        ];
-        default-column-width.proportion = 1.0;
       }
       {
         matches = [
@@ -86,8 +27,6 @@ _:
           { app-id = "^com\\.heroicgameslauncher\\.hgl$"; }
           { app-id = "^net\\.lutris\\.Lutris$"; }
         ];
-        default-column-width.proportion = 1.0;
-        open-on-workspace = "gaming";
         variable-refresh-rate = true;
       }
       {
@@ -97,17 +36,8 @@ _:
           }
         ];
         open-floating = true;
-        default-column-width.fixed = 960;
+        default-column-width.proportion = 0.5;
         default-window-height.fixed = 720;
-      }
-      {
-        matches = [
-          { app-id = "^dev\\.noctalia\\.Noctalia\\.Settings$"; }
-        ];
-        open-floating = true;
-        default-column-width.fixed = 1080;
-        default-window-height.fixed = 920;
-        open-on-workspace = "aesthetic";
       }
     ];
   };
